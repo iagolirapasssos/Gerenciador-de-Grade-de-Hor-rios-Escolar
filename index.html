@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade de Horários Escolar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Grade de Horários Escolar</h1>
+    
+    <!-- Gerenciamento de Séries e Turmas -->
+    <div class="class-management">
+        <h3>Gerenciamento de Séries e Turmas</h3>
+        <div class="class-form">
+            <div>
+                <label>Série: </label>
+                <input type="text" id="gradeName" placeholder="Ex: 1º Ano">
+            </div>
+            <div>
+                <label>Turma: </label>
+                <input type="text" id="className" placeholder="Ex: A">
+            </div>
+            <div class="form-buttons">
+                <button onclick="addClass()" id="addClassBtn">Adicionar Turma</button>
+                <button onclick="updateClass()" id="updateClassBtn" style="display: none;">Atualizar Turma</button>
+                <button onclick="cancelClassEdit()" id="cancelClassEditBtn" style="display: none;">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="class-list">
+            <h4>Turmas Cadastradas:</h4>
+            <select id="currentClass" onchange="updateCurrentClass()">
+                <option value="">Selecione uma turma</option>
+            </select>
+            <div id="classesList"></div>
+        </div>
+    </div>
+    
+    <div class="settings">
+        <!-- Resto do código HTML permanece igual -->
+    </div>
+    
+    <!-- Resto do arquivo HTML continua igual -->
+
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade de Horários Escolar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Grade de Horários Escolar</h1>
+    
+    <div class="settings">
+        <h3>Configurações de Turnos</h3>
+        <div class="shift-settings">
+            <div>
+                <label>Início do turno matutino: </label>
+                <input type="time" id="startTimeMorning" value="07:00">
+            </div>
+            <div>
+                <label>Fim do turno matutino: </label>
+                <input type="time" id="endTimeMorning" value="12:00">
+            </div>
+            <div>
+                <label>Início do turno vespertino: </label>
+                <input type="time" id="startTimeAfternoon" value="13:00">
+            </div>
+            <div>
+                <label>Fim do turno vespertino: </label>
+                <input type="time" id="endTimeAfternoon" value="18:00">
+            </div>
+            <div>
+                <label>Início do turno noturno: </label>
+                <input type="time" id="startTimeNight" value="18:30">
+            </div>
+            <div>
+                <label>Fim do turno noturno: </label>
+                <input type="time" id="endTimeNight" value="22:30">
+            </div>
+        </div>
+
+        <h3>Configurações de Aulas</h3>
+        <div class="class-settings">
+            <div>
+                <label>Duração da aula (minutos): </label>
+                <input type="number" id="classDuration" value="40" min="30" max="120">
+            </div>
+            <div>
+                <label>Quantidade de recreios: </label>
+                <input type="number" id="breakCount" value="1" min="1" max="3" onchange="updateBreakInputs()">
+            </div>
+            <div id="breakInputsContainer">
+                <!-- Break inputs will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="teacher-management">
+        <h3>Gerenciamento de Professores</h3>
+        <div class="teacher-form">
+            <div>
+                <label>Nome do Professor: </label>
+                <input type="text" id="teacherName">
+            </div>
+            <div>
+                <label>Disciplina: </label>
+                <input type="text" id="subject">
+            </div>
+            <div>
+                <label>Quantidade de aulas semanais: </label>
+                <input type="number" id="weeklyClasses" min="1" max="40">
+            </div>
+            <div class="form-buttons">
+                <button onclick="addTeacher()" id="addTeacherBtn">Adicionar Professor</button>
+                <button onclick="updateTeacher()" id="updateTeacherBtn" style="display: none;">Atualizar Professor</button>
+                <button onclick="cancelEdit()" id="cancelEditBtn" style="display: none;">Cancelar</button>
+            </div>
+        </div>
+        
+        <div class="teacher-list">
+            <h4>Professores Cadastrados:</h4>
+            <select id="currentTeacher" onchange="updateCurrentTeacher()">
+                <option value="">Selecione um professor</option>
+            </select>
+            <div id="teachersList"></div>
+        </div>
+    </div>
+
+    <div class="schedule-controls">
+        <button onclick="generateSchedule()" class="generate-button">Gerar Grade</button>
+        <button onclick="checkConflicts()" class="check-conflicts">Verificar Choques</button>
+        <button onclick="applyResolvedSchedule()" class="apply-schedule">Aplicar Sugestões</button>
+        <button onclick="saveToCache()" class="save-button">Salvar Dados</button>
+        <button onclick="generatePDF()" class="pdf-button">Gerar PDF</button>
+        <button onclick="clearCache()" class="clear-button">Limpar Dados</button>
+    </div>
+
+    <div id="suggestions-panel" class="suggestions-panel"></div>
+
+    <div id="schedule-container" class="schedule-container">
+        <!-- Schedule table will be generated here -->
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
