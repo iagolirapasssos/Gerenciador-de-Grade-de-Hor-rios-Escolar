@@ -1,0 +1,1 @@
+# Gerenciador-de-Grade-de-Hor-rios-Escolar
